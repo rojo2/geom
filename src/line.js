@@ -12,6 +12,15 @@ Line.prototype = {
     return Point.distance(this.start, this.end);
   },
 
+  boundingBox: function() {
+    var minx, miny, maxx, maxy;
+    minx = Math.min(this.start.x, this.end.x);
+    miny = Math.min(this.start.y, this.end.y);
+    maxx = Math.max(this.start.x, this.end.x);
+    maxy = Math.max(this.start.y, this.end.y);
+    return new Rect(minx, miny, maxx - minx, maxy - miny);
+  },
+
   angle: function() {
     return Point.angle(this.start, this.end);
   },

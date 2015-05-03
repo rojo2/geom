@@ -13,6 +13,10 @@ Circle.prototype = {
     return (this.radius * 2);
   },
 
+  boundingBox: function() {
+    return new Rect(this.x - this.radius, this.y - this.radius, this.radius * 2, this.radius * 2);
+  },
+
   center: function() {
     return new Point(this.x, this.y);
   },
