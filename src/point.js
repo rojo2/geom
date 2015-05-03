@@ -3,6 +3,22 @@ function Point(x,y) {
   this.y = y || 0.0;
 }
 
+Point.hypothenuse = function(a,b) {
+  return Math.sqrt(a * a + b * b);
+};
+
+Point.distance = function(a,b) {
+  var dx = b.x - a.x;
+  var dy = b.y - a.y;
+  return Point.hypothenuse(dx,dy);
+};
+
+Point.angle = function(a,b) {
+  var dx = b.x - a.x;
+  var dy = b.y - a.y;
+  return Math.atan2(dy, dx);
+};
+
 Point.prototype = {
 
   constructor: Point,
@@ -25,6 +41,12 @@ Point.prototype = {
     return this;
   },
 
+  divide: function(p) {
+    this.x /= p.x;
+    this.y /= p.y;
+    return this;
+  },
+
   scaleBy: function(k) {
     this.x *= k;
     this.y *= k;
@@ -40,11 +62,11 @@ Point.prototype = {
   distance: function(p) {
     var dx = this.x - p.x;
     var dy = this.y - p.y;
-    return Math.sqrt(dx * dx + dy * dy);
+    return Point.hypothenuse(dx, dy);
   },
 
   length: function() {
-    return Math.sqrt(this.x * this.x + this.y * this.y);
+    return Point.hypothenuse(this.x, this.y);
   },
 
   normalize: function() {
